@@ -1,0 +1,46 @@
+# 操作系统文件
+.DS_Store
+Thumbs.db
+
+# 编辑器和 IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# 技能文件（仅用于发布）
+*.skill
+
+# 临时文件
+*.tmp
+*.log
+*.bak
+
+# 敏感信息
+.env
+.env.local
+*.key
+*.pem

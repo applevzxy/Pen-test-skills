@@ -1,0 +1,85 @@
+name: Validate Skills
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+        
+    - name: Validate SKILL.md files
+      run: |
+        python3 << 'EOF'
+        import yaml
+        import os
+        import sys
+        
+        def validate_skill(skill_dir):
+            skill_md = os.path.join(skill_dir, 'SKILL.md')
+            if not os.path.exists(skill_md):
+                print(f"❌ Error: SKILL.md not found in {skill_dir}")
+                return False
+            
+            with open(skill_md, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            # Check for YAML frontmatter
+            if not content.startswith('---'):
+                print(f"❌ Error: {skill_dir}/SKILL.md missing YAML frontmatter")
+                return False
+            
+            # Parse YAML
+            try:
+                frontmatter_end = content.find('---', 3)
+                yaml_content = content[3:frontmatter_end]
+                data = yaml.safe_load(yaml_content)
+                
+                # Check required fields
+                if 'name' not in data:
+                    print(f"❌ Error: {skill_dir}/SKILL.md missing 'name' field")
+                    return False
+                if 'description' not in data:
+                    print(f"❌ Error: {skill_dir}/SKILL.md missing 'description' field")
+                    return False
+                    
+                print(f"✅ {skill_dir}/SKILL.md is valid")
+                print(f"   Name: {data['name']}")
+                print(f"   Description: {data['description'][:50]}...")
+                return True
+                
+            except Exception as e:
+                print(f"❌ Error parsing YAML in {skill_dir}/SKILL.md: {e}")
+                return False
+        
+        # Validate all skills
+        skills_dir = 'skills'
+        if not os.path.exists(skills_dir):
+            print(f"❌ Error: {skills_dir} directory not found")
+            sys.exit(1)
+        
+        all_valid = True
+        for skill_name in os.listdir(skills_dir):
+            skill_path = os.path.join(skills_dir, skill_name)
+            if os.path.isdir(skill_path):
+                if not validate_skill(skill_path):
+                    all_valid = False
+        
+        if all_valid:
+            print("\n✅ All skills are valid!")
+            sys.exit(0)
+        else:
+            print("\n❌ Some skills have validation errors")
+            sys.exit(1)
+        EOF

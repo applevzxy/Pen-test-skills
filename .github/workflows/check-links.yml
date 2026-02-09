@@ -1,0 +1,80 @@
+name: Check Markdown Links
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  schedule:
+    # 每周一凌晨 2 点运行
+    - cron: '0 2 * * 1'
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+        
+    - name: Install dependencies
+      run: |
+        pip install beautifulsoup4 requests
+        
+    - name: Check Markdown links
+      run: |
+        python3 << 'EOF'
+        import os
+        import re
+        from bs4 import BeautifulSoup
+        import requests
+        from urllib.parse import urlparse
+        
+        def extract_links_from_markdown(file_path):
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            # Extract markdown links: [text](url)
+            links = re.findall(r'\[([^\]]+)\]\(([^)]+)\)', content)
+            return links
+        
+        def check_link(url):
+            try:
+                response = requests.head(url, timeout=10, allow_redirects=True)
+                return response.status_code < 400
+            except:
+                return False
+        
+        # Check all markdown files
+        broken_links = []
+        for root, dirs, files in os.walk('.'):
+            for file in files:
+                if file.endswith('.md'):
+                    file_path = os.path.join(root, file)
+                    print(f"Checking {file_path}...")
+                    
+                    links = extract_links_from_markdown(file_path)
+                    for text, url in links:
+                        # Skip local links
+                        if url.startswith('#') or url.startswith('http'):
+                            continue
+                        
+                        # Check external links
+                        if url.startswith('http'):
+                            if not check_link(url):
+                                broken_links.append((file_path, url, text))
+        
+        # Report results
+        if broken_links:
+            print("\n❌ Found broken links:")
+            for file_path, url, text in broken_links:
+                print(f"   {file_path}: [{text}]({url})")
+            exit(1)
+        else:
+            print("\n✅ All links are valid!")
+        EOF
