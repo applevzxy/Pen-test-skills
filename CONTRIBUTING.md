@@ -25,7 +25,7 @@
 
 如果你发现了 bug，请：
 
-1. 检查 [Issues](https://github.com/yourusername/pen-test-skills/issues) 确认问题未被报告
+1. 检查 [Issues](https://github.com/applevzxy/pen-test-skills/issues) 确认问题未被报告
 2. 创建一个新的 Issue，包含：
    - 清晰的标题和描述
    - 重现步骤
@@ -37,7 +37,7 @@
 
 如果你有新的技能想法：
 
-1. 检查 [Issues](https://github.com/yourusername/pen-test-skills/issues) 确认想法未被提出
+1. 检查 [Issues](https://github.com/applevzxy/pen-test-skills/issues) 确认想法未被提出
 2. 创建一个 Feature Request，包含：
    - 技能的用途和目标
    - 预期的使用场景
@@ -60,11 +60,11 @@
 ```bash
 # 1. Fork 仓库到你的 GitHub 账户
 # 2. Clone 你的 fork
-git clone https://github.com/yourusername/pen-test-skills.git
+git clone https://github.com/applevzxy/pen-test-skills.git
 
 # 3. 添加上游仓库
 cd pen-test-skills
-git remote add upstream https://github.com/yourusername/pen-test-skills.git
+git remote add upstream https://github.com/applevzxy/pen-test-skills.git
 
 # 4. 创建新分支
 git checkout -b feature/your-feature-name
@@ -245,13 +245,13 @@ docs(readme): update installation instructions
 
 如果你在贡献过程中遇到问题：
 
-- 查看 [现有 Issues](https://github.com/yourusername/pen-test-skills/issues)
-- 在 [Discussions](https://github.com/yourusername/pen-test-skills/discussions) 中提问
+- 查看 [现有 Issues](https://github.com/applevzxy/pen-test-skills/issues)
+- 在 [Discussions](https://github.com/applevzxy/pen-test-skills/discussions) 中提问
 - 联系维护者
 
 ## 🎉 认可
 
-你的贡献会被记录在 [Contributors](https://github.com/yourusername/pen-test-skills/graphs/contributors) 页面。
+你的贡献会被记录在 [Contributors](https://github.com/applevzxy/pen-test-skills/graphs/contributors) 页面。
 
 ---
 

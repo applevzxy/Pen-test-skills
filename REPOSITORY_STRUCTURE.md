@@ -210,8 +210,8 @@ python ../../scripts/package_skill.py .
 如果你对仓库结构有任何疑问：
 
 - 查看 [CONTRIBUTING.md](../CONTRIBUTING.md)
-- 在 [Discussions](https://github.com/yourusername/pen-test-skills/discussions) 中提问
-- 创建 [Issue](https://github.com/yourusername/pen-test-skills/issues)
+- 在 [Discussions](https://github.com/applevzxy/pen-test-skills/discussions) 中提问
+- 创建 [Issue](https://github.com/applevzxy/pen-test-skills/issues)
 
 ---
 

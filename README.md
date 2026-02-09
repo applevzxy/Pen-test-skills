@@ -66,13 +66,13 @@
 ### 方法 2：克隆仓库
 
 ```bash
-git clone https://github.com/yourusername/pen-test-skills.git
+git clone https://github.com/applevzxy/pen-test-skills.git
 cd pen-test-skills
 ```
 
 ### 方法 3：从 GitHub 安装
 
-1. 访问 [Releases](https://github.com/yourusername/pen-test-skills/releases) 页面
+1. 访问 [Releases](https://github.com/applevzxy/pen-test-skills/releases) 页面
 2. 下载最新版本的 `.skill` 文件
 3. 在 Claude AI 中导入
 
@@ -115,8 +115,8 @@ Claude AI 将：
 
 1. **Fork 本仓库**
    ```bash
-   git clone https://github.com/yourusername/pen-test-skills.git
-   ```
+git clone https://github.com/applevzxy/pen-test-skills.git
+```
 
 2. **创建特性分支**
    ```bash
@@ -203,8 +203,8 @@ SOFTWARE.
 
 ## 📞 联系方式
 
-- **问题反馈**：[GitHub Issues](https://github.com/yourusername/pen-test-skills/issues)
-- **功能建议**：[GitHub Discussions](https://github.com/yourusername/pen-test-skills/discussions)
+- **问题反馈**：[GitHub Issues](https://github.com/applevzxy/pen-test-skills/issues)
+- **功能建议**：[GitHub Discussions](https://github.com/applevzxy/pen-test-skills/discussions)
 - **安全问题**：请通过私有渠道报告
 
 ## ⚠️ 免责声明
