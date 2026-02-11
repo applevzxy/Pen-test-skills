@@ -118,9 +118,31 @@ skill-name/
 ├── references/                  # 可选：参考资料
 │   ├── guide.md               # 详细指南
 │   ├── template.md             # 模板文件
-│   └── cheatsheet.md          # 速查表
+│   ├── cheatsheet.md          # 速查表
+│   └── mcp-guide.md           # MCP 工具使用指南（可选）
 └── scripts/                    # 可选：脚本文件
     └── tool.py               # 可执行脚本
+```
+
+**示例**：
+
+```
+xss-penetration-testing/
+├── SKILL.md
+└── references/
+    ├── xss-payload-guide.md
+    ├── filter-bypass-cheatsheet.md
+    ├── exfiltration-verification-cheatsheet.md
+    └── penetration-test-report-template.md
+
+sql-injection-penetration-testing/
+├── SKILL.md
+└── references/
+    ├── sql-injection-payload-guide.md
+    ├── filter-bypass-cheatsheet.md
+    ├── data-exfiltration-cheatsheet.md
+    ├── mcp-sqlmap-guide.md
+    └── penetration-test-report-template.md
 ```
 
 ### SKILL.md 规范
@@ -156,12 +178,62 @@ description: 清晰描述技能的用途和触发条件
 - **guide.md**：详细的操作指南和教程
 - **template.md**：报告模板或输出模板
 - **cheatsheet.md**：速查表和快速参考
+- **mcp-guide.md**：MCP 工具使用指南（如果技能集成了 MCP 工具）
 
 **最佳实践**：
 - 保持 SKILL.md 精简（< 500 行）
 - 将详细信息移到 references/ 文件
 - 在 SKILL.md 中引用 references/ 文件
 - 为长文件添加目录
+
+### MCP 工具集成
+
+如果技能需要集成 MCP（Model Context Protocol）工具：
+
+1. **在 SKILL.md 中说明**：
+   - 列出使用的 MCP 工具
+   - 说明工具的用途和功能
+   - 提供使用示例
+
+2. **创建 mcp-guide.md**：
+   - MCP 工具的安装和配置
+   - API 接口详解
+   - 使用示例和最佳实践
+   - 故障排除指南
+
+3. **在实战案例中集成**：
+   - 展示 MCP 工具的使用场景
+   - 提供完整的代码示例
+   - 说明与手动测试的结合方式
+
+**示例**：
+
+```markdown
+## MCP SQLMap 集成
+
+本技能已集成 MCP SQLMap 服务器，提供自动化 SQL 注入扫描能力。
+
+**MCP SQLMap 功能**：
+- ✅ 自动化 SQL 注入检测
+- ✅ 支持异步任务处理
+- ✅ 完整的 HTTP 请求分析
+
+详细使用方法请参考：[MCP SQLMap 使用指南](references/mcp-sqlmap-guide.md)
+```
+
+**mcp-guide.md 结构**：
+
+```markdown
+# MCP 工具使用指南
+
+## 概述
+## 安装和配置
+## API 接口详解
+## 使用示例
+## 高级用法
+## 最佳实践
+## 故障排除
+```
 
 ### 脚本规范
 
