@@ -297,6 +297,6 @@ SOFTWARE.
 
 **如果觉得这个项目有用，请给个 ⭐️**
 
-Made with ❤️ by the Penetration Testing Community
+Made with ❤️ by HappyFatman
 
 </div>
