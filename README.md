@@ -1,7 +1,7 @@
 # Penetration Testing Skills
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Skills](https://img.shields.io/badge/skills-XSS%20Testing-green.svg)](skills/)
+[![Skills](https://img.shields.io/badge/skills-XSS%20%7C%20SQL%20Injection-green.svg)](skills/)
 [![Claude](https://img.shields.io/badge/platform-Claude%20AI-orange.svg)](https://claude.ai)
 
 > 专业的渗透测试技能集合，为 Claude AI 提供专业的安全测试能力。
@@ -26,6 +26,12 @@
 - ✅ **实战导向**：包含真实场景的绕过技术和案例
 - ✅ **持续更新**：根据最新的安全威胁和防御技术更新
 - ✅ **易于使用**：清晰的文档和示例，快速上手
+- ✅ **自动化支持**：集成 MCP SQLMap 等自动化工具
+
+### 当前技能
+
+1. **XSS 渗透测试**：专业的跨站脚本攻击测试技能
+2. **SQL 注入渗透测试**：专业的 SQL 注入测试技能，集成 MCP SQLMap 自动化扫描
 
 ## 🛠️ 技能列表
 
@@ -54,6 +60,43 @@
 - 安全研究和学习
 
 详细文档：[查看技能文档](skills/xss-penetration-testing/)
+
+### SQL 注入渗透测试 (sql-injection-penetration-testing)
+
+专业的 SQL 注入渗透测试技能，用于识别和利用 Web 应用程序中的 SQL 注入漏洞。集成 MCP SQLMap 自动化扫描能力。
+
+**核心能力**：
+- 漏洞识别（经典注入、盲注、时间盲注、二阶注入、堆叠查询注入）
+- Payload 生成和优化
+- 过滤绕过技术
+- MCP SQLMap 自动化扫描
+- 数据提取和外带
+- 详细报告生成
+
+**包含内容**：
+- 完整的 SQL 注入 Payload 库
+- 30+ 种绕过技术
+- 实战案例分析（19.1-19.10）
+- MCP SQLMap 自动化扫描流程
+- 数据外带验证技术
+- 渗透测试报告模板
+- 过滤器绕过速查表
+
+**数据库支持**：
+- MySQL
+- PostgreSQL
+- SQL Server
+- Oracle
+- SQLite
+- NoSQL（MongoDB、Redis、Elasticsearch）
+
+**适用场景**：
+- Web 应用程序安全审计
+- 数据库漏洞评估和渗透测试
+- 数据库访问控制测试
+- 安全研究和学习
+
+详细文档：[查看技能文档](skills/sql-injection-penetration-testing/)
 
 ## 📦 安装方法
 
@@ -97,6 +140,33 @@ Claude AI 将：
 2. 选择合适的 Payload 进行测试
 3. 根据过滤机制调整 Payload
 4. 验证漏洞并生成报告
+```
+
+#### SQL 注入渗透测试示例
+
+```
+用户：测试 https://example.com/product?id=1 是否存在 SQL 注入漏洞
+
+Claude AI 将：
+1. 分析目标 URL 和参数
+2. 使用 MCP SQLMap 自动扫描
+3. 分析扫描结果，确定注入类型
+4. 基于扫描结果进行手动验证
+5. 深入利用漏洞，提取敏感数据
+6. 生成详细的渗透测试报告
+```
+
+#### MCP SQLMap 自动扫描示例
+
+```
+用户：使用 MCP SQLMap 自动扫描目标
+
+Claude AI 将：
+1. 准备 HTTP 请求报文
+2. 调用 submit_scan 提交扫描任务
+3. 使用 check_scan_status 查询扫描状态
+4. 使用 get_scan_result 获取扫描结果
+5. 分析扫描结果并生成报告
 ```
 
 ### 技能开发指南
@@ -198,8 +268,13 @@ SOFTWARE.
 
 - [Claude AI Skills](https://claude.ai/skills)
 - [OWASP Top 10](https://owasp.org/www-project-top-ten/)
+- [OWASP SQL Injection](https://owasp.org/www-community/attacks/SQL_Injection)
+- [OWASP XSS](https://owasp.org/www-community/attacks/xss/)
 - [HackerOne](https://www.hackerone.com/)
 - [Bugcrowd](https://www.bugcrowd.com/)
+- [SQLMap 官方文档](http://sqlmap.org/)
+- [PortSwigger SQL 注入实验室](https://portswigger.net/web-security/sql-injection)
+- [PortSwigger XSS 实验室](https://portswigger.net/web-security/cross-site-scripting)
 
 ## 📞 联系方式
 
